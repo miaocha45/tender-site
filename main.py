@@ -1,3 +1,7 @@
+mport os
+curr_dir = os.path.dirname(os.path.abspath(__file__))
+file_path = os.path.join(curr_dir, "templates", "index.html")
+print("CHECK index.html exists:", os.path.exists(file_path), file_path)
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
