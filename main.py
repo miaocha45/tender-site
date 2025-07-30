@@ -279,7 +279,7 @@ app.add_middleware(
 )
 
 # 静态文件服务
-app.mount("/static", StaticFiles(directory="."), name="static")
+app.mount("/static", StaticFiles(directory="templates"), name="static")
 
 # 数据库依赖
 def get_db():
@@ -295,6 +295,10 @@ from fastapi.responses import FileResponse
 
 @app.get("/")
 async def serve_index():
+    # 绝对路径获取，保证无论当前工作目录如何都能找到
+    curr_dir = os.path.dirname(os.path.abspath(__file__))
+    file_path = os.path.join(curr_dir, "templates", "index.html")
+    return FileResponse(file_path)
 
 @app.get("/api/tenders", response_model=List[TenderInfoResponse])
 async def get_tenders(
