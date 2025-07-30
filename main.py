@@ -290,9 +290,11 @@ def get_db():
         db.close()
 
 # API路由
+import os
+from fastapi.responses import FileResponse
+
 @app.get("/")
 async def serve_index():
-    return FileResponse('index.html')
 
 @app.get("/api/tenders", response_model=List[TenderInfoResponse])
 async def get_tenders(
