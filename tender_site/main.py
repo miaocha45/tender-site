@@ -279,7 +279,7 @@ app.add_middleware(
 )
 
 # 静态文件服务
-app.mount("/static", StaticFiles(directory="."), name="static")
+app.mount("/static", StaticFiles(directory="templates"), name="static")
 
 # 数据库依赖
 def get_db():
